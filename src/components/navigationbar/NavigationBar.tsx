@@ -3,6 +3,7 @@ import './NavigationBar.css';
 import { useHistory } from 'react-router-dom';
 import { UserContext } from '../../shared/global/provider/UserProvider';
 import { Profile } from '../profile/Profile';
+import RoutingPath from '../../routes/RoutingPath';
 
 export const NavigationBar = () => {
     // skapa en referens
@@ -15,14 +16,18 @@ export const NavigationBar = () => {
         return (
         (authenticatedUser) 
         ?  <div className="profile"><Profile /></div>
-        : <span className="signIn" onClick={ () => history.push('/signin') }>Logga in</span>
+        : <span className="signIn" onClick={ () => history.push(RoutingPath.signInView) }>Logga in</span>
         )
     }
 
     return (
         <div className="navigationBarContainer">
-            <span className="home" onClick={ () => history.push('/') }>Hem</span>
-            <span className="recipes" onClick={ () => history.push('/recipes') }>Recept</span>
+            <span className="home" onClick={ () => 
+                history.push(RoutingPath.homeView) }>Hem</span>
+            <span className="recipes" onClick={ () => 
+                history.push(RoutingPath.recipeView) }>Recept</span>
+            <span className="shareyourrecipes" onClick={ () => 
+                history.push(RoutingPath.shareYourRecipeView) }>Dela med dig av recept/tips</span>
             {displayUserIfAuthenticated()}
         </div>    
     )// onClick ska ta emot en callback
